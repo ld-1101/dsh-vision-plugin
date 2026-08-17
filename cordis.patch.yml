@@ -1,26 +1,14 @@
-# dsh-vision 插件配置模板
+# dsh-vision-plugin bundle patch（`dsh plugin add` 安装时自动激活）
 #
-# 供应商预设（provider）：opencode-go（默认）/ mimo / zhipu / dashscope / openai /
-#                         volcengine / siliconflow / openrouter / custom
-# 配置优先级：apiKey 手动值 > apiKeyEnv 环境变量 > 预设默认环境变量
-#            apiBaseUrl / model 留空时使用所选预设值
-#
-# 使用：把下面的条目合并进 %USERPROFILE%\.dsh\profiles\desktop\cordis.patch.yml
-# 的顶层数组（与 install.ps1 生成的 - insert: 条目同级），然后重启 DSH Desktop。
+# 两种安装方式：
+#   A. dsh plugin add（推荐社区用户）：
+#      dsh plugin --profile web add github:ld-1101/dsh-vision-plugin
+#      本 patch 自动生效（insert dsh-vision-plugin 包），无需手动编辑。
+#      安装后仍需执行 patch-host.ps1 打宿主补丁并重启。
+#   B. 脚本安装（本仓库 install.ps1）：
+#      install.ps1 会生成 profile 级 insert 条目（绝对路径指向 src/index.ts），
+#      与本文件无关。
 
 - insert:
     - id: dsh-vision
-      name: 'C:/Users/<你的用户名>/.dsh/profiles/desktop/plugins/dsh-vision/src/index.ts'
-      config:
-        provider: 'opencode-go'
-        # apiKey 留空时读取 apiKeyEnv 环境变量（OPENCODE_GO_API_KEY / MIMO_API_KEY 等）
-        apiKey: ''
-        apiKeyEnv: 'OPENCODE_GO_API_KEY'
-        # 以下均可留空（使用预设值），custom 预设必须手动填写：
-        # apiBaseUrl: 'https://open.bigmodel.cn/api/paas/v4'
-        # model: 'glm-4v-flash'
-        defaultPrompt: '请详细描述这张图片的内容，包括主要物体、人物、文字（OCR）、场景和布局。'
-        timeoutMs: 90000
-        maxTokens: 2048
-        temperature: 0.2
-        remoteImageMode: 'direct'
+      name: dsh-vision-plugin

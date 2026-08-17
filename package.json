@@ -1,12 +1,51 @@
 {
   "name": "dsh-vision-plugin",
   "version": "1.0.0",
-  "description": "DSH 视觉理解插件：调用任意 OpenAI 兼容视觉模型（自定义 URL + API Key），支持默认提示词与 LLM 动态提示词",
-  "private": true,
+  "description": "DSH 视觉理解插件：纯文本模型也能看图——发图自动用视觉模型描述，描述不足自动重新解析；系统模型/自定义双模式 + GUI 可视化配置",
   "license": "MIT",
-  "dependencies": {
-    "@deepseek-ai/cordis": "*",
-    "@deepseek-ai/dsh-tools": "*",
-    "@deepseek-ai/schemastery": "*"
-  }
+  "type": "module",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./client": "./dist/lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "slots",
+        "settingsScope"
+      ]
+    }
+  },
+  "files": [
+    "src",
+    "dist",
+    "cordis.patch.yml",
+    "install.ps1",
+    "patch-host.ps1",
+    "README.md",
+    "LICENSE"
+  ],
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1",
+    "@deepseek-ai/dsh-llm": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-settings": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-tools": "^0.1.0-rc.6",
+    "@deepseek-ai/schemastery": "^0.1.0-rc.6"
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "vision",
+    "visual",
+    "image",
+    "ocr",
+    "多模态"
+  ]
 }
