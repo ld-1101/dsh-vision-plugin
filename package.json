@@ -1,0 +1,12 @@
+{
+  "name": "dsh-vision-plugin",
+  "version": "1.0.0",
+  "description": "DSH 视觉理解插件：调用任意 OpenAI 兼容视觉模型（自定义 URL + API Key），支持默认提示词与 LLM 动态提示词",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "@deepseek-ai/cordis": "*",
+    "@deepseek-ai/dsh-tools": "*",
+    "@deepseek-ai/schemastery": "*"
+  }
+}

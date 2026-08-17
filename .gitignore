@@ -1,0 +1,16 @@
+# dependencies
+node_modules/
+*.tgz
+
+# test artifacts
+test/.cache/
+
+# editor / os
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# local backups
+*.bak-dsh-vision
